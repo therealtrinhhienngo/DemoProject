@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import RNVideoProcessing from 'react-native-video-processing'
+import { VideoPlayer, Trimmer } from "react-native-video-processing";
 
 class App extends Component {
     trimVideo() {
@@ -28,14 +28,14 @@ class App extends Component {
 
     getVideoInfo() {
         this.videoPlayerRef.getVideoInfo()
-        .then((info) => console.log(info))
-        .catch(console.warn);
+            .then((info) => console.log(info))
+            .catch(console.warn);
     }
 
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <RNVideoProcessing.VideoPlayer
+                <VideoPlayer
                     ref={ref => this.videoPlayerRef = ref}
                     source={require('./assets/video.mp4')}
                     startTime={30}  // seconds
@@ -45,7 +45,7 @@ class App extends Component {
                     resizeMode={VideoPlayer.Constants.resizeMode.CONTAIN}
                     onChange={({ nativeEvent }) => console.log({ nativeEvent })} // get Current time on every second
                 />
-                <RNVideoProcessing.Trimmer
+                <Trimmer
                     source={require('./assets/video.mp4')}
                     height={100}
                     width={300}
